@@ -1,0 +1,715 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}E:\Ecole\AS2\Semestre1\Stat du travail\TP\diroutput\tp_final.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}27 Dec 2024, 15:42:43
+{txt}
+{com}.         
+.         cd "$dirdo" // repertoire de travail
+{res}E:\Ecole\AS2\Semestre1\Stat du travail\TP\dirdo
+{txt}
+{com}.         
+. /*******************************************************************************
+>     PART 2:  Préparation des données
+> ********************************************************************************/
+.         
+.         // Ouverture de la base
+.         use using "$dirdata\emploi.dta"
+{txt}
+{com}.         describe
+
+{txt}Contains data from {res}E:\Ecole\AS2\Semestre1\Stat du travail\TP\dirdata\emploi.dta
+{txt} Observations:{res}       120.689                  
+{txt}    Variables:{res}           580                  9 Jul 2023 13:08
+{txt}{hline}
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+{hline}
+{p 0 48}{res}{bind:strate         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:strate   }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:hh1            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Grappe{p_end}
+{p 0 48}{bind:hh2            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Menage{p_end}
+{p 0 48}{bind:m1             }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Individu{p_end}
+{p 0 48}{bind:m4             }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Age enquêté{p_end}
+{p 0 48}{bind:m3E            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:m3E      }{bind:  }{res}{res}Sexe de l'enquêté{p_end}
+{p 0 48}{bind:SE1_1          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}SE1. 1. Etudes (scolaires){p_end}
+{p 0 48}{bind:SE1_2          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}SE1. 2. Travaux domestiques dans sa propre maison,{p_end}
+{p 0 48}{bind:SE1_3          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}SE1. 3.  Garde d'enfants, de personnes âgées, de malades, sans  rémunération{p_end}
+{p 0 48}{bind:SE1_4          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}SE1. 4. Chercher de l'eau ou du bois,{p_end}
+{p 0 48}{bind:SE1_5          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}SE1. 5. Faire le marché{p_end}
+{p 0 48}{bind:SE1_6          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}SE1. 6. Construction de sa propre maison{p_end}
+{p 0 48}{bind:SE1_7          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}SE1. 7. Prestation de services gratuits à sa communauté{p_end}
+{p 0 48}{bind:SE2            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE2      }{stata "notes list SE2":*} {res}SE2. Au cours des 7 derniers jours, avez-vous travaillé ne serait-ce qu'une heur{p_end}
+{p 0 48}{bind:SE3_1          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE3_1    }{bind:  }{res}{res}SE3. Travailler dans une affaire personnelle{p_end}
+{p 0 48}{bind:SE3_2          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE3_2    }{bind:  }{res}{res}SE3. Fabriquer un produit pour la vente{p_end}
+{p 0 48}{bind:SE3_3          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE3_3    }{bind:  }{res}{res}SE3. Délivrer un service{p_end}
+{p 0 48}{bind:SE3_4          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE3_4    }{bind:  }{res}{res}SE3. Aider dans une entreprise familiale{p_end}
+{p 0 48}{bind:SE3_5          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE3_5    }{bind:  }{res}{res}SE3. En aidant dans une entreprise familiale{p_end}
+{p 0 48}{bind:SE3_6          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE3_6    }{bind:  }{res}{res}SE3. Comme apprenti ou stagiaire rémunéré{p_end}
+{p 0 48}{bind:SE3_7          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE3_7    }{bind:  }{res}{res}SE3. Comme étudiant qui réalise un travail{p_end}
+{p 0 48}{bind:SE3_8          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE3_8    }{bind:  }{res}{res}SE3. En travaillant dans une autre ménage{p_end}
+{p 0 48}{bind:SE3_9          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE3_9    }{bind:  }{res}{res}SE3. N'importe quelle autre activité pour un revenu{p_end}
+{p 0 48}{bind:SE3_10         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE3_10   }{bind:  }{res}{res}SE3. Aucune activité de ce genre{p_end}
+{p 0 48}{bind:SE4            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE4      }{bind:  }{res}{res}SE4. Bien que vous n'ayez pas travaillé pendant les 7 derniers jours, avez-vous{p_end}
+{p 0 48}{bind:SE5            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE5      }{bind:  }{res}{res}SE5. Pourquoi n'avez-vous pas travaillé pendant les 7 derniers jours ?{p_end}
+{p 0 48}{bind:SE5A           }{txt}{bind: strL    }{bind:{txt}%246s     }{space 1}{bind:         }{bind:  }{res}{res}SE5. Préciser autre raison{p_end}
+{p 0 48}{bind:SE6A           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE6A     }{stata "notes list SE6A":*} {res}SE6a. Dans combien de temps allez-vous reprendre le travail ou commencer à trava{p_end}
+{p 0 48}{bind:SE6B           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE6B     }{stata "notes list SE6B":*} {res}SE6b. Dans combien de temps allez-vous reprendre le travail ou commencer à trava{p_end}
+{p 0 48}{bind:SE7            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE7      }{bind:  }{res}{res}SE7. Avez-vous cherché un emploi rémunéré au cours des 30 derniers jours ?{p_end}
+{p 0 48}{bind:SE8            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE8      }{stata "notes list SE8":*} {res}SE8. Pourquoi n'avez-vous pas cherché de travail rémunéré (ou ne désirez-vous pa{p_end}
+{p 0 48}{bind:SE9            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE9      }{bind:  }{res}{res}SE9. Seriez-vous disponible pour travailler pour une rémunération?{p_end}
+{p 0 48}{bind:SE10           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE10     }{stata "notes list SE10":*} {res}SE10. Malgré que vous n?ayez pas cherché un emploi et n?êtes pas disponible pour{p_end}
+{p 0 48}{bind:SE11           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE11     }{stata "notes list SE11":*} {res}SE11. Vous ne travaillez pas (ou vous n?êtes pas disponible à travailler) parce{p_end}
+{p 0 48}{bind:SE12           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SE12     }{bind:  }{res}{res}SE12. Comment faites-vous pour subvenir à vos besoins ? (ressource principale){p_end}
+{p 0 48}{bind:AP1_NOM_0      }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AP1_NOM_0{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}AP1. Grands groupe des métiers et professions ?{p_end}
+{p 0 48}{bind:AP2_Niv1       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP2_Niv1 }{stata "notes list AP2_Niv1":*} {res}AP2. Activité de l'entreprise dans l'emploi principal, ou type de produit fabriq{p_end}
+{p 0 48}{bind:AP3            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP3      }{bind:  }{res}{res}AP3.  Quelle est votre catégorie   socioprofessionnelle ?{p_end}
+{p 0 48}{bind:AP4            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP4      }{bind:  }{res}{res}AP4. L'entreprise dans laquelle vous exercez votre emploi principal (ou que vous{p_end}
+{p 0 48}{bind:AP5            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP5      }{stata "notes list AP5":*} {res}AP5. Combien de personnes au total travaillent dans cet  établissement (y compri{p_end}
+{p 0 48}{bind:AP6A           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP6A     }{bind:  }{res}{res}AP6a. A quel régime fiscal cet établissement est-il assujetti?{p_end}
+{p 0 48}{bind:AP6B_A         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP6B_A   }{bind:  }{res}{res}AP6b a) Registre de commerce{p_end}
+{p 0 48}{bind:AP6B_B         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP6B_B   }{bind:  }{res}{res}AP6b b) NINEA{p_end}
+{p 0 48}{bind:AP6B_C         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP6B_C   }{bind:  }{res}{res}AP6b c) CNSS,IPRES{p_end}
+{p 0 48}{bind:AP6C_A         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP6C_A   }{bind:  }{res}{res}AP6c a) Registre de commerce{p_end}
+{p 0 48}{bind:AP6C_B         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP6C_B   }{bind:  }{res}{res}AP6c b) NINEA{p_end}
+{p 0 48}{bind:AP6C_C         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP6C_C   }{bind:  }{res}{res}AP6c c) CNSS,IPRES{p_end}
+{p 0 48}{bind:AP6D           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP6D     }{bind:  }{res}{res}AP6d.  Tenez-vous une comptabilité formelle?{p_end}
+{p 0 48}{bind:AP6E           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP6E     }{stata "notes list AP6E":*} {res}AP6e. L?unité dans laquelle vous travaillez réalise-t-elle une activité de produ{p_end}
+{p 0 48}{bind:AP6F           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list AP6F":*} {res}AP6f. Au moment où vous avez commencé à diriger l'entreprise, combien de personn{p_end}
+{p 0 48}{bind:AP7            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP7      }{bind:  }{res}{res}AP7. Dans quel type de lieu exercez-vous votre emploi principal ?{p_end}
+{p 0 48}{bind:AP8A1          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}AP8a1. Depuis quand exercez-vous cet emploi actuel ?{p_end}
+{p 0 48}{bind:AP8A2          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}AP8a2. Depuis quand travaillez-vous dans cette entreprise ?{p_end}
+{p 0 48}{bind:AP8A3          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP8A3    }{bind:  }{res}{res}AP8a3. Avez-vous obtenu une promotion dans votre entreprise ?{p_end}
+{p 0 48}{bind:AP8A41         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP8A41   }{bind:  }{res}{res}AP8a41. Avez-vous suivi une formation professionnelle/recyclage correspondant à{p_end}
+{p 0 48}{bind:AP8A42         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP8A42   }{stata "notes list AP8A42":*} {res}AP8a42. L?emploi que vous exercez correspond-il à la formation que vous avez sui{p_end}
+{p 0 48}{bind:AP8A43         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP8A43   }{bind:  }{res}{res}AP8a43. Sinon, correspond-il à une formation antérieure ?{p_end}
+{p 0 48}{bind:AP8A5          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list AP8A5":*} {res}AP8a5. Vous avez déclaré exercer le métier .(voir AP1) dans votre emploi princip{p_end}
+{p 0 48}{bind:AP8A6          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP8A6    }{bind:  }{res}{res}AP8a6. Votre emploi actuel est-il le premier emploi ?{p_end}
+{p 0 48}{bind:AP8A7          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list AP8A7":*} {res}AP8a7. Si oui, avant de trouver cet emploi, combien de mois avez-vous passé dans{p_end}
+{p 0 48}{bind:AP8A8          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list AP8A8":*} {res}AP8a8. Combien de mois avez-vous passé après votre emploi antérieur pour  obteni{p_end}
+{p 0 48}{bind:AP8B           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP8B     }{bind:  }{res}{res}AP8b. Comment avez-vous obtenu votre emploi?{p_end}
+{p 0 48}{bind:AP8BA          }{txt}{bind: str244  }{bind:{txt}%244s     }{space 1}{bind:         }{bind:  }{res}{res}AP8b. Préciser comment cet emploi est obtenu ?{p_end}
+{p 0 48}{bind:AP8C1          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP8C1    }{bind:  }{res}{res}AP8c1.   Avez-vous un bulletin de paie ?{p_end}
+{p 0 48}{bind:AP8C2          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP8C2    }{bind:  }{res}{res}AP8c2.   Avez-vous un contrat pour votre travail?{p_end}
+{p 0 48}{bind:AP9A           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP9A     }{bind:  }{res}{res}AP9a.   Le travail que vous exercez dans cette entreprise est-il :{p_end}
+{p 0 48}{bind:AP9B           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP9B     }{bind:  }{res}{res}AP9b.   S'agit-il d'un travail :{p_end}
+{p 0 48}{bind:AP10A          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list AP10A":*} {res}AP10a. Combien de mois avez-vous consacré à votre emploi principal au cours des{p_end}
+{p 0 48}{bind:AP10B          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list AP10B":*} {res}AP10b. Combien de jours avez-vous consacré à votre emploi principal au cours des{p_end}
+{p 0 48}{bind:AP10C          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list AP10C":*} {res}AP10c. Combien d'heures avez-vous consacré à votre emploi principal au cours des{p_end}
+{p 0 48}{bind:AP11A          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP11A    }{bind:  }{res}{res}AP11a. Si vous avez travaillé moins de 40 heures au cours des 7 derniers jours,{p_end}
+{p 0 48}{bind:AP11AA         }{txt}{bind: str244  }{bind:{txt}%244s     }{space 1}{bind:         }{bind:  }{res}{res}AP11a. Préciser pour quel motif vous avez travaillé moins de 40 heures ?{p_end}
+{p 0 48}{bind:AP11B          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP11B    }{stata "notes list AP11B":*} {res}AP11b.  Si vous avez travaillé plus de 45  heures au cours 7 derniers jours, que{p_end}
+{p 0 48}{bind:AP12           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP12     }{stata "notes list AP12":*} {res}AP12. Sous quelle forme êtes-vous payé, ou obtenez-vous vos revenus, dans votre{p_end}
+{p 0 48}{bind:AP13A          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP13A    }{stata "notes list AP13A":*} {res}AP13a. Dans votre emploi principal rémunéré, comment déclarez-vous vos revenus p{p_end}
+{p 0 48}{bind:AP13B          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}AP13b. Combien s?élève votre revenu (en FCFA){p_end}
+{p 0 48}{bind:AP13C          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP13C    }{bind:  }{res}{res}AP13c.  Dans quelle tranche se situe votre revenu (en milliers FCFA)?{p_end}
+{p 0 48}{bind:AP14           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP14     }{stata "notes list AP14":*} {res}AP14.  Si vous n'avez pas changé d'emploi depuis un an (ap8a1 >= 12, plus d?un a{p_end}
+{p 0 48}{bind:AP14M          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}AP14. Quel était le montant  annuel (FCFA)?{p_end}
+{p 0 48}{bind:AP15A          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP15A    }{bind:  }{res}{res}AP15a.  Y a-t-il au moins un syndicat ou une association de travailleurs dans l'{p_end}
+{p 0 48}{bind:AP15B          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP15B    }{bind:  }{res}{res}AP15b.  Appartenez-vous à un syndicat ou association?{p_end}
+{p 0 48}{bind:AP15C          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP15C    }{stata "notes list AP15C":*} {res}AP15c. Dans cet emploi, êtes-vous  membre d?un syndicat ou d?une association sim{p_end}
+{p 0 48}{bind:AP16_11A       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16_11A }{bind:  }{res}{res}11- Indemnités de logement, eau, électricité{p_end}
+{p 0 48}{bind:AP16_12A       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16_12A }{bind:  }{res}{res}12- Autres (IPRES,CNSS){p_end}
+{p 0 48}{bind:AP16_21A       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16_21A }{bind:  }{res}{res}21- Paiement par l?employeur de cotisations de protection sociale ?{p_end}
+{p 0 48}{bind:AP16_22A       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16_22A }{bind:  }{res}{res}22- Congés annuels payés ou compensation éventuelle ?{p_end}
+{p 0 48}{bind:AP16_23A       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16_23A }{bind:  }{res}{res}23- Congés maladies rémunérés ?{p_end}
+{p 0 48}{bind:AP16_24A       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16_24A }{bind:  }{res}{res}24- Participations aux bénéfices ?{p_end}
+{p 0 48}{bind:AP16_25A       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16_25A }{bind:  }{res}{res}25- Primes de fin d?année ?{p_end}
+{p 0 48}{bind:AP16_26A       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16_26A }{bind:  }{res}{res}26- Paiement des avantages en nature ?{p_end}
+{p 0 48}{bind:AP16a9         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16a9   }{bind:  }{res}{res}31- Transport ou indemnité de transport{p_end}
+{p 0 48}{bind:AP16a10        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16a10  }{bind:  }{res}{res}32- Subvention de repas{p_end}
+{p 0 48}{bind:AP16a11        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16a11  }{bind:  }{res}{res}33- Congés payés annuels (vacances){p_end}
+{p 0 48}{bind:AP16a12        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16a12  }{bind:  }{res}{res}34. Congés de maladie rémunérés{p_end}
+{p 0 48}{bind:AP16a13        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16a13  }{bind:  }{res}{res}35. Retraite/assurance vieillesse{p_end}
+{p 0 48}{bind:AP16a14        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16a14  }{bind:  }{res}{res}36. Indemnités de licenciement/fin de contrat{p_end}
+{p 0 48}{bind:AP16a15        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16a15  }{bind:  }{res}{res}37. Paiement des heures supplémentaires{p_end}
+{p 0 48}{bind:AP16a16        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16a16  }{bind:  }{res}{res}38. Assurance-maladie/IPM/Mutuelle de santé{p_end}
+{p 0 48}{bind:AP16a17        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16a17  }{bind:  }{res}{res}39. Prime de rendement (de performance){p_end}
+{p 0 48}{bind:AP16a18        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16a18  }{bind:  }{res}{res}40. Affiliation à la Caisse de Sécurité sociale (CSS){p_end}
+{p 0 48}{bind:AP16a19        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16a19  }{bind:  }{res}{res}41. Formation{p_end}
+{p 0 48}{bind:AP16a20        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16a20  }{bind:  }{res}{res}42. Sécurité au travail/équipements ou vêtements de protection{p_end}
+{p 0 48}{bind:AP16a21        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16a21  }{bind:  }{res}{res}43. Structures de garde des enfants{p_end}
+{p 0 48}{bind:AP16a22        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16a22  }{bind:  }{res}{res}44. Congé de maternité/paternité{p_end}
+{p 0 48}{bind:AP16a23        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16a23  }{bind:  }{res}{res}45. Assurance d?accident de travail{p_end}
+{p 0 48}{bind:AP16a24        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16a24  }{bind:  }{res}{res}45. Prestations familiales{p_end}
+{p 0 48}{bind:AP16_11B       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16_11B }{bind:  }{res}{res} Périodicité Indemnités de logement, eau, électricité{p_end}
+{p 0 48}{bind:AP16_12B       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16_12B }{bind:  }{res}{res} Périodicité Autres (IPRES,CNSS){p_end}
+{p 0 48}{bind:AP16_21B       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16_21B }{bind:  }{res}{res} Périodicité Paiement par l?employeur de cotisations de protection sociale ?{p_end}
+{p 0 48}{bind:AP16_22B       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16_22B }{bind:  }{res}{res} Périodicité Congés annuels payés ou compensation éventuelle ?{p_end}
+{p 0 48}{bind:AP16_23B       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16_23B }{bind:  }{res}{res} Périodicité Congés maladies rémunérés ?{p_end}
+{p 0 48}{bind:AP16_24B       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16_24B }{bind:  }{res}{res} Périodicité Participations aux bénéfices ?{p_end}
+{p 0 48}{bind:AP16_25B       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16_25B }{bind:  }{res}{res} Périodicité Primes de fin d?année ?{p_end}
+{p 0 48}{bind:AP16_26B       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16_26B }{bind:  }{res}{res} Périodicité Paiement des avantages en nature ?{p_end}
+{p 0 48}{bind:AP16b9         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16b9   }{bind:  }{res}{res} PériodicitéTransport ou indemnité de transport{p_end}
+{p 0 48}{bind:AP16b10        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16b10  }{bind:  }{res}{res} Périodicité Subvention de repas{p_end}
+{p 0 48}{bind:AP16b11        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16b11  }{bind:  }{res}{res}Périodicité Congés payés annuels (vacances){p_end}
+{p 0 48}{bind:AP16b12        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16b12  }{bind:  }{res}{res}Périodicité Congés de maladie rémunérés{p_end}
+{p 0 48}{bind:AP16b13        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16b13  }{bind:  }{res}{res}Périodicité Retraite/assurance vieillesse{p_end}
+{p 0 48}{bind:AP16b14        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16b14  }{bind:  }{res}{res}Périodicité Indemnités de licenciement/fin de contrat{p_end}
+{p 0 48}{bind:AP16b15        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16b15  }{bind:  }{res}{res}Périodicité Paiement des heures supplémentaires{p_end}
+{p 0 48}{bind:AP16b16        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16b16  }{bind:  }{res}{res}Périodicité Assurance-maladie/IPM/Mutuelle de santé{p_end}
+{p 0 48}{bind:AP16b17        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16b17  }{bind:  }{res}{res}Périodicité Prime de rendement (de performance){p_end}
+{p 0 48}{bind:AP16b18        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16b18  }{bind:  }{res}{res}Périodicité Affiliation à la Caisse de Sécurité sociale (CSS){p_end}
+{p 0 48}{bind:AP16b19        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16b19  }{bind:  }{res}{res}Périodicité Formation{p_end}
+{p 0 48}{bind:AP16b20        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16b20  }{bind:  }{res}{res}Périodicité Sécurité au travail/équipements ou vêtements de protection{p_end}
+{p 0 48}{bind:AP16b21        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16b21  }{bind:  }{res}{res} Périodicité Structures de garde des enfants{p_end}
+{p 0 48}{bind:AP16b22        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16b22  }{bind:  }{res}{res} Périodicité Congé de maternité/paternité{p_end}
+{p 0 48}{bind:AP16b23        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16b23  }{bind:  }{res}{res}Périodicité Assurance d?accident de travail{p_end}
+{p 0 48}{bind:AP16b24        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP16b24  }{bind:  }{res}{res}Périodicité Prestations familiales{p_end}
+{p 0 48}{bind:AP16_11C       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res} Montant Indemnités de logement, eau, électricité{p_end}
+{p 0 48}{bind:AP16_12C       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res} Montant Autres (IPRES,CNSS){p_end}
+{p 0 48}{bind:AP16_21C       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res} Montant Paiement par l?employeur de cotisations de protection sociale ?{p_end}
+{p 0 48}{bind:AP16_22C       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res} Montant Congés annuels payés ou compensation éventuelle ?{p_end}
+{p 0 48}{bind:AP16_23C       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res} Montant Congés maladies rémunérés ?{p_end}
+{p 0 48}{bind:AP16_24C       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res} Montant Participations aux bénéfices ?{p_end}
+{p 0 48}{bind:AP16_25C       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res} Montant Primes de fin d?année ?{p_end}
+{p 0 48}{bind:AP16_26C       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res} Montant Paiement des avantages en nature ?{p_end}
+{p 0 48}{bind:AP16c9         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res} Montant Transport ou indemnité de transport{p_end}
+{p 0 48}{bind:AP16c10        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res} Montant Subvention de repas{p_end}
+{p 0 48}{bind:AP16c11        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant Congés payés annuels (vacances){p_end}
+{p 0 48}{bind:AP16c12        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant Congés de maladie rémunérés{p_end}
+{p 0 48}{bind:AP16c13        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant Retraite/assurance vieillesse{p_end}
+{p 0 48}{bind:AP16c14        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant Indemnités de licenciement/fin de contrat{p_end}
+{p 0 48}{bind:AP16c15        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant Paiement des heures supplémentaires{p_end}
+{p 0 48}{bind:AP16c16        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant Assurance-maladie/IPM/Mutuelle de santé{p_end}
+{p 0 48}{bind:AP16c17        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant Prime de rendement (de performance){p_end}
+{p 0 48}{bind:AP16c18        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant Affiliation à la Caisse de Sécurité sociale (CSS){p_end}
+{p 0 48}{bind:AP16c19        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant Formation{p_end}
+{p 0 48}{bind:AP16c20        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant Sécurité au travail/équipements ou vêtements de protection{p_end}
+{p 0 48}{bind:AP16c21        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res} Montant Structures de garde des enfants{p_end}
+{p 0 48}{bind:AP16c22        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res} Montant Congé de maternité/paternité{p_end}
+{p 0 48}{bind:AP16c23        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant Assurance d?accident de travail{p_end}
+{p 0 48}{bind:AP16c24        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant Prestations familiales{p_end}
+{p 0 48}{bind:AP17           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP17     }{stata "notes list AP17":*} {res}AP17. Dans votre emploi actuel, est-ce que vous payez l?impôt sur votre revenu ?{p_end}
+{p 0 48}{bind:AP18A          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}AP18a Habituellement, à quelle heure vous débutez votre  journée de travail?{p_end}
+{p 0 48}{bind:AP18A_H        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list AP18A_H":*} {res}AP18a Habituellement, à quelle heure vous débutez votre  journée de travail? Heu{p_end}
+{p 0 48}{bind:AP18A_M        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list AP18A_M":*} {res}AP18a Habituellement, à quelle heure vous débutez votre  journée de travail? Min{p_end}
+{p 0 48}{bind:AP18B          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}AP18b. Habituellement, à quelle heure vous finissez votre  journée de travail?{p_end}
+{p 0 48}{bind:AP18B_H        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list AP18B_H":*} {res}AP18b Habituellement, à quelle heure vous finissez votre  journée de travail? He{p_end}
+{p 0 48}{bind:AP18B_M        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list AP18B_M":*} {res}AP18b Habituellement, à quelle heure vous finissez votre  journée de travail? Mi{p_end}
+{p 0 48}{bind:AP18C          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP18C    }{bind:  }{res}{res}AP18c. Vous arrive-t-il de travailler en dehors des horaires habituels de servic{p_end}
+{p 0 48}{bind:AP19A          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP19A    }{stata "notes list AP19A":*} {res}AP19a. Pourriez-vous bénéficier dans votre entreprise d?un congé pour une naissa{p_end}
+{p 0 48}{bind:AP19B          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP19B    }{stata "notes list AP19B":*} {res}AP19b. Avez-vous accouché d?au moins un enfant pendant que vous travailliez dans{p_end}
+{p 0 48}{bind:AP19C          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list AP19C":*} {res}AP19c. Si oui, la dernière fois que vous avez accouché, en tout, de combien de s{p_end}
+{p 0 48}{bind:AP20A1         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20A1   }{stata "notes list AP20A1":*} {res}AP20A_01. Comment a varié votre situation d?activité au cours du 12eme dernier m{p_end}
+{p 0 48}{bind:AP20A2         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20A2   }{stata "notes list AP20A2":*} {res}AP20A_02. Comment a varié votre situation d?activité au cours du 11eme dernier m{p_end}
+{p 0 48}{bind:AP20A3         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20A3   }{stata "notes list AP20A3":*} {res}AP20A_03. Comment a varié votre situation d?activité au cours du 10eme dernier m{p_end}
+{p 0 48}{bind:AP20A4         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20A4   }{stata "notes list AP20A4":*} {res}AP20A_04. Comment a varié votre situation d?activité au cours du 9eme dernier mo{p_end}
+{p 0 48}{bind:AP20A5         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20A5   }{stata "notes list AP20A5":*} {res}AP20A_05. Comment a varié votre situation d?activité au cours du 8eme dernier mo{p_end}
+{p 0 48}{bind:AP20A6         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20A6   }{stata "notes list AP20A6":*} {res}AP20A_06. Comment a varié votre situation d?activité au cours du 7eme dernier mo{p_end}
+{p 0 48}{bind:AP20A7         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20A7   }{stata "notes list AP20A7":*} {res}AP20A_07. Comment a varié votre situation d?activité au cours du 6eme dernier mo{p_end}
+{p 0 48}{bind:AP20A8         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20A8   }{stata "notes list AP20A8":*} {res}AP20A_08. Comment a varié votre situation d?activité au cours du 5eme dernier mo{p_end}
+{p 0 48}{bind:AP20A9         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20A9   }{stata "notes list AP20A9":*} {res}AP20A_09. Comment a varié votre situation d?activité au cours du 4eme dernier mo{p_end}
+{p 0 48}{bind:AP20A10        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20A10  }{stata "notes list AP20A10":*} {res}AP20A_10. Comment a varié votre situation d?activité au cours du 3eme dernier mo{p_end}
+{p 0 48}{bind:AP20A11        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20A11  }{stata "notes list AP20A11":*} {res}AP20A_11. Comment a varié votre situation d?activité au cours du 2eme dernier mo{p_end}
+{p 0 48}{bind:AP20A12        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20A12  }{stata "notes list AP20A12":*} {res}AP20A_12. Comment a varié votre situation d?activité au cours du  dernier mois?{p_end}
+{p 0 48}{bind:AP20B1         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20B1   }{bind:  }{res}{res}AP20B_01 Quelle était la branche d?activité au cours du 12eme dernier mois{p_end}
+{p 0 48}{bind:AP20B2         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20B2   }{bind:  }{res}{res}AP20B_02 Quelle était la branche d?activité au cours du 11eme dernier mois{p_end}
+{p 0 48}{bind:AP20B3         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20B3   }{bind:  }{res}{res}AP20B_03 Quelle était la branche d?activité au cours du 10eme dernier mois{p_end}
+{p 0 48}{bind:AP20B4         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20B4   }{bind:  }{res}{res}AP20B_04 Quelle était la branche d?activité au cours du 9eme dernier mois{p_end}
+{p 0 48}{bind:AP20B5         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20B5   }{bind:  }{res}{res}AP20B_05 Quelle était la branche d?activité au cours du 8eme dernier mois{p_end}
+{p 0 48}{bind:AP20B6         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20B6   }{bind:  }{res}{res}AP20B_06 Quelle était la branche d?activité au cours du 7eme dernier mois{p_end}
+{p 0 48}{bind:AP20B7         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20B7   }{bind:  }{res}{res}AP20B_07 Quelle était la branche d?activité au cours du 6eme dernier mois{p_end}
+{p 0 48}{bind:AP20B8         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20B8   }{bind:  }{res}{res}AP20B_08 Quelle était la branche d?activité au cours du 5eme dernier mois{p_end}
+{p 0 48}{bind:AP20B9         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20B9   }{bind:  }{res}{res}AP20B_09 Quelle était la branche d?activité au cours du 4eme dernier mois{p_end}
+{p 0 48}{bind:AP20B10        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20B10  }{bind:  }{res}{res}AP20B_10 Quelle était la branche d?activité au cours du 3eme dernier mois{p_end}
+{p 0 48}{bind:AP20B11        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20B11  }{bind:  }{res}{res}AP20B_11 Quelle était la branche d?activité au cours du 2eme dernier mois{p_end}
+{p 0 48}{bind:AP20B12        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20B12  }{bind:  }{res}{res}AP20B_12 Quelle était la branche d?activité au cours du  dernier mois{p_end}
+{p 0 48}{bind:AP20C1         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20C1   }{bind:  }{res}{res}AP20C_01 Quelle était la CSP au cours du 12eme dernier mois?{p_end}
+{p 0 48}{bind:AP20C2         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20C2   }{bind:  }{res}{res}AP20C_02 Quelle était la CSP au cours du 11eme dernier mois?{p_end}
+{p 0 48}{bind:AP20C3         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20C3   }{bind:  }{res}{res}AP20C_03 Quelle était la CSP au cours du 10eme dernier mois?{p_end}
+{p 0 48}{bind:AP20C4         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20C4   }{bind:  }{res}{res}AP20C_04 Quelle était la CSP au cours du 9eme dernier mois?{p_end}
+{p 0 48}{bind:AP20C5         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20C5   }{bind:  }{res}{res}AP20C_05 Quelle était la CSP au cours du 8eme dernier mois?{p_end}
+{p 0 48}{bind:AP20C6         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20C6   }{bind:  }{res}{res}AP20C_06 Quelle était la CSP au cours du 7eme dernier mois?{p_end}
+{p 0 48}{bind:AP20C7         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20C7   }{bind:  }{res}{res}AP20C_07 Quelle était la CSP au cours du 6eme dernier mois?{p_end}
+{p 0 48}{bind:AP20C8         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20C8   }{bind:  }{res}{res}AP20C_08 Quelle était la CSP au cours du 5eme dernier mois?{p_end}
+{p 0 48}{bind:AP20C9         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20C9   }{bind:  }{res}{res}AP20C_09 Quelle était la CSP au cours du 4eme dernier mois?{p_end}
+{p 0 48}{bind:AP20C10        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20C10  }{bind:  }{res}{res}AP20C_10 Quelle était la CSP au cours du 3eme dernier mois?{p_end}
+{p 0 48}{bind:AP20C11        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20C11  }{bind:  }{res}{res}AP20C_11 Quelle était la CSP au cours du 2eme dernier mois?{p_end}
+{p 0 48}{bind:AP20C12        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AP20C12  }{bind:  }{res}{res}AP20C_12 Quelle était la CSP au cours du  dernier mois?{p_end}
+{p 0 48}{bind:SGEP1_A        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP1_A  }{bind:  }{res}{res}SGEP1_a. Perspective de promotion{p_end}
+{p 0 48}{bind:SGEP1_B        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP1_B  }{bind:  }{res}{res}SGEP1_b. Revenu perçu/obtenu{p_end}
+{p 0 48}{bind:SGEP1_C        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP1_C  }{bind:  }{res}{res}SGEP1_c. Sécurité de l?emploi{p_end}
+{p 0 48}{bind:SGEP1_D        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP1_D  }{bind:  }{res}{res}SGEP1_d. Bonnes relations avec les collègues{p_end}
+{p 0 48}{bind:SGEP1_E        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP1_E  }{bind:  }{res}{res}SGEP1_e. Bonnes relations avec les supérieurs{p_end}
+{p 0 48}{bind:SGEP1_F        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP1_F  }{bind:  }{res}{res}SGEP1_f. Liberté d?initiative{p_end}
+{p 0 48}{bind:SGEP1_G        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP1_G  }{bind:  }{res}{res}SGEP1_g. Avantages sociaux{p_end}
+{p 0 48}{bind:SGEP1_H        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP1_H  }{bind:  }{res}{res}SGEP1_h. Le travail en lui-même{p_end}
+{p 0 48}{bind:SGEP2          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP2    }{stata "notes list SGEP2":*} {res}SGEP2a Pensez-vous que dans les prochaines années il y a un risque que vous soye{p_end}
+{p 0 48}{bind:SGEP2b         }{txt}{bind: str244  }{bind:{txt}%244s     }{space 1}{bind:         }{bind:  }{res}{res}SGEP2b Veuillez en donner la principale des raisons :{p_end}
+{p 0 48}{bind:SGEP3          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP3    }{bind:  }{res}{res}SGEP3. Quelle est l?expression qui illustre le mieux votre parcours professionne{p_end}
+{p 0 48}{bind:SGEP4          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP4    }{bind:  }{res}{res}SGEP4. Pensez-vous gravir les échelons dans votre entreprise ?{p_end}
+{p 0 48}{bind:SGEP5          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP5    }{bind:  }{res}{res}SGEP5. Comment pensez-vous que les activités évoluent dans votre entreprise ?{p_end}
+{p 0 48}{bind:SGEP6_A        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP6_A  }{bind:  }{res}{res}SGEP6_a. L?organisation est bonne{p_end}
+{p 0 48}{bind:SGEP6_B        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP6_B  }{bind:  }{res}{res}SGEP6_b. L?ambiance de travail est agréable{p_end}
+{p 0 48}{bind:SGEP6_C        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP6_C  }{bind:  }{res}{res}SGEP6_c. Les perspectives de promotion sont nombreuses{p_end}
+{p 0 48}{bind:SGEP6_D        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP6_D  }{bind:  }{res}{res}SGEP6_d. Les conditions de travail sont bonnes{p_end}
+{p 0 48}{bind:SGEP6_E        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP6_E  }{bind:  }{res}{res}SGEP6_e. Il n?y a pas de risque de licenciement{p_end}
+{p 0 48}{bind:SGEP7_A        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP7_A  }{bind:  }{res}{res}SGEP7_a. Une équipe{p_end}
+{p 0 48}{bind:SGEP7_B        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP7_B  }{bind:  }{res}{res}SGEP7_b. Une passion{p_end}
+{p 0 48}{bind:SGEP7_C        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP7_C  }{bind:  }{res}{res}SGEP7_c. Une aventure{p_end}
+{p 0 48}{bind:SGEP7_D        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP7_D  }{bind:  }{res}{res}SGEP7_d. Une routine{p_end}
+{p 0 48}{bind:SGEP7_E        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP7_E  }{bind:  }{res}{res}SGEP7_e. Une impasse{p_end}
+{p 0 48}{bind:SGEP7_F        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP7_F  }{bind:  }{res}{res}SGEP7_f. Une course d?obstacle{p_end}
+{p 0 48}{bind:SGEP7_G        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP7_G  }{bind:  }{res}{res}SGEP7_g. Une jungle{p_end}
+{p 0 48}{bind:SGEP7_H        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:SGEP7_H  }{bind:  }{res}{res}SGEP7_h. Une galère{p_end}
+{p 0 48}{bind:AS1A           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AS1A     }{stata "notes list AS1A":*} {res}AS1a. En plus de votre emploi principal, avez-vous exercé d'autres emplois rémun{p_end}
+{p 0 48}{bind:AS1B1          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}AS1b1.  Quel est le nombre total des emplois secondaires que vous exercez ?{p_end}
+{p 0 48}{bind:AS1B2_AS1      }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS1B2_AS1{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}AS1b2.  Donnez par ordre d'importance (nombre d'heures) la liste de ces autres e{p_end}
+{p 0 48}{bind:AS1B2_AS2      }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS1B2_AS2{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}AS1b2.  Donnez par ordre d'importance (nombre d'heures) la liste de ces autres e{p_end}
+{p 0 48}{bind:AS1B2_AS3      }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS1B2_AS3{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}AS1b2.  Donnez par ordre d'importance (nombre d'heures) la liste de ces autres e{p_end}
+{p 0 48}{bind:AS1B2_AS4      }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS1B2_AS4{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}AS1b2.  Donnez par ordre d'importance (nombre d'heures) la liste de ces autres e{p_end}
+{p 0 48}{bind:AS1C           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AS1C     }{bind:  }{res}{res}AS1c.  Bien que vous n'ayez pas exercé d'autres emplois au cours des 7 derniers{p_end}
+{p 0 48}{bind:AS2_AS1A       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AS2_AS1A }{bind:  }{res}{res}AS2. Grands groupe des métiers et professions ?{p_end}
+{p 0 48}{bind:AS3S1_OLD      }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS3S1_OLD{p_end}
+{p 0 48}{space 44}{stata "notes list AS3S1_OLD":*} {res}AS3.  Quelle est l'activité de l'entreprise dans laquelle vous avez exercé chacu{p_end}
+{p 0 48}{bind:AS4_AS1        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AS4_AS1  }{stata "notes list AS4_AS1":*} {res}AS4.  Dans chacun de ces emplois secondaires, quelle est votre catégorie sociopr{p_end}
+{p 0 48}{bind:AS5_AS1        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AS5_AS1  }{stata "notes list AS5_AS1":*} {res}AS5.  L'entreprise dans laquelle vous avez exercé chacun de ces  emplois seconda{p_end}
+{p 0 48}{bind:AS6_AS1        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AS6_AS1  }{stata "notes list AS6_AS1":*} {res}AS6.  Combien de personnes au total travaillent dans chacun de ces établissement{p_end}
+{p 0 48}{bind:AS7A_AS1       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AS7A_AS1 }{bind:  }{res}{res}AS7a. A quel régime fiscal chacun de ces établissements est-il assujetti? AS1{p_end}
+{p 0 48}{bind:AS7B_AS1_A1    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS7B_AS1_A1{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}AS7b. L'entreprise dans laquelle vous  exercez votre emploi secondaire (ou que v{p_end}
+{p 0 48}{bind:AS7B_AS1_A2    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS7B_AS1_A2{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}AS7b. Si oui, disposez-vous d?une pièce justificative (RC)? AS1{p_end}
+{p 0 48}{bind:AS7B_AS1_B1    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS7B_AS1_B1{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}AS7b.  L'entreprise dans laquelle vous  exercez votre emploi secondaire (ou que{p_end}
+{p 0 48}{bind:AS7B_AS1_B2    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS7B_AS1_B2{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}AS7b. Si oui, disposez-vous d?une pièce justificative (NINEA)? AS1{p_end}
+{p 0 48}{bind:AS7B_AS1_C1    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS7B_AS1_C1{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}AS7b.  L'entreprise dans laquelle vous  exercez votre emploi secondaire (ou que{p_end}
+{p 0 48}{bind:AS7B_AS1_C2    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS7B_AS1_C2{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}AS7b. Si oui, disposez-vous d?une pièce justificative (INSS)? AS1{p_end}
+{p 0 48}{bind:AS7C_AS1       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AS7C_AS1 }{bind:  }{res}{res}AS7c. Tenez-vous une comptabilité ?AS1{p_end}
+{p 0 48}{bind:AS7D_AS1       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AS7D_AS1 }{stata "notes list AS7D_AS1":*} {res}AS7d. L?unité dans laquelle vous travaillez réalise-t-elle une activité de produ{p_end}
+{p 0 48}{bind:AS8_AS1        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AS8_AS1  }{stata "notes list AS8_AS1":*} {res}AS8.  Dans quel type de local avez-vous exercé votre emploi secondaire rémunéré?{p_end}
+{p 0 48}{bind:AS9A_AS1       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list AS9A_AS1":*} {res}AS9a.  Combien de mois avez-vous consacré à votre emploi secondaire rémunéré au{p_end}
+{p 0 48}{bind:AS9B_AS1       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list AS9B_AS1":*} {res}AS9b. Combien de jours avez-vous consacré à votre emploi secondaire rémunéréau c{p_end}
+{p 0 48}{bind:AS9C_AS1       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list AS9C_AS1":*} {res}AS9c.  Combien d'heures avez-vous consacré à votre emploi secondaire rémunéré au{p_end}
+{p 0 48}{bind:AS10A_AS1      }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS10A_AS1{p_end}
+{p 0 48}{space 44}{stata "notes list AS10A_AS1":*} {res}AS10a. Dans votre emploi secondaire rémunéré, à comment déclarez-vous vos revenu{p_end}
+{p 0 48}{bind:AS10B_AS1      }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list AS10B_AS1":*} {res}AS10b. Dans cet emploi secondaire rémunéré, à combien estimez-vous vos revenus ?{p_end}
+{p 0 48}{bind:AS10C_AS1      }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS10C_AS1{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}AS10c.  Dans quelle tranche se situe votre revenu (milliers de FCFA)? AS1{p_end}
+{p 0 48}{bind:AS11_AS1       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AS11_AS1 }{bind:  }{res}{res}AS11b. Avez-vous un bulletin de paie ? AS1{p_end}
+{p 0 48}{bind:AS12_AS1_M1    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS1_M1{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS1_M1":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 12eme dernier mois dan{p_end}
+{p 0 48}{bind:AS12_AS1_M2    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS1_M2{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS1_M2":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 11eme dernier mois dan{p_end}
+{p 0 48}{bind:AS12_AS1_M3    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS1_M3{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS1_M3":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 10eme derniers mois da{p_end}
+{p 0 48}{bind:AS12_AS1_M4    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS1_M4{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS1_M4":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 9eme dernier mois dans{p_end}
+{p 0 48}{bind:AS12_AS1_M5    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS1_M5{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS1_M5":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 8eme dernier mois dans{p_end}
+{p 0 48}{bind:AS12_AS1_M6    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS1_M6{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS1_M6":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 7eme dernier mois dans{p_end}
+{p 0 48}{bind:AS12_AS1_M7    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS1_M7{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS1_M7":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 6eme dernier mois dans{p_end}
+{p 0 48}{bind:AS12_AS1_M8    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS1_M8{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS1_M8":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 5eme dernier mois dans{p_end}
+{p 0 48}{bind:AS12_AS1_M9    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS1_M9{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS1_M9":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 4eme dernier mois dans{p_end}
+{p 0 48}{bind:AS12_AS1_M10   }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS1_M10{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS1_M10":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 3eme dernier mois dans{p_end}
+{p 0 48}{bind:AS12_AS1_M11   }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS1_M11{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS1_M11":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 2eme dernier mois dans{p_end}
+{p 0 48}{bind:AS12_AS1_M12   }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS1_M12{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS1_M12":*} {res}AS12 Comment a varié votre situation d?emploi au cours du dernier mois dans votr{p_end}
+{p 0 48}{bind:SGES1_AS1_A    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES1_AS1_A{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES1_a1. Perspective de promotion{p_end}
+{p 0 48}{bind:SGES1_AS1_B    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES1_AS1_B{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES1_b1. Revenu perçu/obtenu{p_end}
+{p 0 48}{bind:SGES1_AS1_C    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES1_AS1_C{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES1_c1. Sécurité de l?emploi{p_end}
+{p 0 48}{bind:SGES1_AS1_D    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES1_AS1_D{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES1_d1. Bonnes relations avec les collègues{p_end}
+{p 0 48}{bind:SGES1_AS1_E    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES1_AS1_E{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES1_e1. Bonnes relations avec les supérieurs{p_end}
+{p 0 48}{bind:SGES1_AS1_F    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES1_AS1_F{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES1_f1. Liberté d?initiative{p_end}
+{p 0 48}{bind:SGES1_AS1_G    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES1_AS1_G{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES1_g1. Avantages sociaux{p_end}
+{p 0 48}{bind:SGES1_AS1_H    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES1_AS1_H{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES1_h1. Le travail en lui-même{p_end}
+{p 0 48}{bind:SGES2A_AS1     }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES2A_AS1{p_end}
+{p 0 48}{space 44}{stata "notes list SGES2A_AS1":*} {res}SGES2a_1 Pensez-vous que dans les prochaines années il y a un risque que vous so{p_end}
+{p 0 48}{bind:SGES3_AS1      }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES3_AS1{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES3_1. Quelle est l?expression qui illustre le mieux votre parcours profession{p_end}
+{p 0 48}{bind:SGES4_AS1      }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES4_AS1{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES4_1. Pensez-vous gravir les échelons dans votre entreprise ?{p_end}
+{p 0 48}{bind:SGES5_AS1      }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES5_AS1{p_end}
+{p 0 48}{space 44}{stata "notes list SGES5_AS1":*} {res}SGES5_1. Comment pensez-vous que les activités évoluent dans votre entreprise ?{p_end}
+{p 0 48}{bind:SGES6_AS1_A    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES6_AS1_A{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES6_a1. L?organisation est bonne{p_end}
+{p 0 48}{bind:SGES6_AS1_B    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES6_AS1_B{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES6_b1. L?ambiance de travail est agréable{p_end}
+{p 0 48}{bind:SGES6_AS1_C    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES6_AS1_C{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES6_c1. Les perspectives de promotion sont nombreuses{p_end}
+{p 0 48}{bind:SGES6_AS1_D    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES6_AS1_D{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES6_d1. Les conditions de travail sont bonnes{p_end}
+{p 0 48}{bind:SGES6_AS1_E    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES6_AS1_E{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES6_e1. Il n?y a pas de risque de licenciement{p_end}
+{p 0 48}{bind:SGES7_AS1_A    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES7_AS1_A{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES7_a1. Une équipe{p_end}
+{p 0 48}{bind:SGES7_AS1_B    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES7_AS1_B{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES7_b1. Une passion{p_end}
+{p 0 48}{bind:SGES7_AS1_C    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES7_AS1_C{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES7_c1. Une aventure{p_end}
+{p 0 48}{bind:SGES7_AS1_D    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES7_AS1_D{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES7_d1. Une routine{p_end}
+{p 0 48}{bind:SGES7_AS1_E    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES7_AS1_E{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES7_e1. Une impasse{p_end}
+{p 0 48}{bind:SGES7_AS1_F    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES7_AS1_F{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES7_f1. Une course d?obstacle{p_end}
+{p 0 48}{bind:SGES7_AS1_G    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES7_AS1_G{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES7_g1. Une jungle{p_end}
+{p 0 48}{bind:SGES7_AS1_H    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES7_AS1_H{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES7_h1. Une galère{p_end}
+{p 0 48}{bind:cond_AS4       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:AS4_AS2        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AS4_AS2  }{stata "notes list AS4_AS2":*} {res}AS4.  Dans chacun de ces emplois secondaires, quelle est votre catégorie sociopr{p_end}
+{p 0 48}{bind:AS5_AS2        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AS5_AS2  }{stata "notes list AS5_AS2":*} {res}AS5.  L'entreprise dans laquelle vous avez exercé chacun de ces  emplois seconda{p_end}
+{p 0 48}{bind:AS6_AS2        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AS6_AS2  }{stata "notes list AS6_AS2":*} {res}AS6.  Combien de personnes au total travaillent dans chacun de ces établissement{p_end}
+{p 0 48}{bind:AS7_AS2        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AS7_AS2  }{bind:  }{res}{res}AS7a. A quel régime fiscal chacun de ces établissements est-il assujetti? AS2{p_end}
+{p 0 48}{bind:AS7B_AS2_A1    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS7B_AS2_A1{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}AS7b.  L'entreprise dans laquelle vous  exercez votre emploi secondaire (ou que{p_end}
+{p 0 48}{bind:AS7B_AS2_A2    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS7B_AS2_A2{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}AS7b. Si oui, disposez-vous d?une pièce justificative (RC)? AS2{p_end}
+{p 0 48}{bind:AS7B_AS2_B1    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS7B_AS2_B1{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}AS7b.  L'entreprise dans laquelle vous  exercez votre emploi secondaire (ou que{p_end}
+{p 0 48}{bind:AS7B_AS2_B2    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS7B_AS2_B2{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}AS7b. Si oui, disposez-vous d?une pièce justificative (NIF)? AS2{p_end}
+{p 0 48}{bind:AS7B_AS2_C1    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS7B_AS2_C1{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}AS7b.  L'entreprise dans laquelle vous  exercez votre emploi secondaire (ou que{p_end}
+{p 0 48}{bind:AS7B_AS2_C2    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS7B_AS2_C2{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}AS7b. Si oui, disposez-vous d?une pièce justificative (INSS)? AS2{p_end}
+{p 0 48}{bind:AS7C_AS2       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AS7C_AS2 }{bind:  }{res}{res}AS7c. Tenez-vous une comptabilité ?AS2{p_end}
+{p 0 48}{bind:AS7D_AS2       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AS7D_AS2 }{stata "notes list AS7D_AS2":*} {res}AS7d. L?unité dans laquelle vous travaillez réalise-t-elle une activité de produ{p_end}
+{p 0 48}{bind:AS8_AS2        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AS8_AS2  }{stata "notes list AS8_AS2":*} {res}AS8.  Dans quel type de local avez-vous exercé votre emploi secondaire rémunéré?{p_end}
+{p 0 48}{bind:AS9A_AS2       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list AS9A_AS2":*} {res}AS9a.  Combien de mois avez-vous consacré à votre emploi secondaire rémunéré au{p_end}
+{p 0 48}{bind:AS9B_AS2       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list AS9B_AS2":*} {res}AS9b. Combien de jours avez-vous consacré à votre emploi secondaire rémunéréau c{p_end}
+{p 0 48}{bind:AS9C_AS2       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list AS9C_AS2":*} {res}AS9c.  Combien d'heures avez-vous consacré à votre emploi secondaire rémunéré au{p_end}
+{p 0 48}{bind:AS10A_AS2      }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS10A_AS2{p_end}
+{p 0 48}{space 44}{stata "notes list AS10A_AS2":*} {res}AS10a. Dans votre emploi secondaire rémunéré, à comment déclarez-vous vos revenu{p_end}
+{p 0 48}{bind:AS10B_AS2      }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list AS10B_AS2":*} {res}AS10b. Dans cet emploi secondaire rémunéré, à combien estimez-vous vos revenus ?{p_end}
+{p 0 48}{bind:AS10C_AS2      }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS10C_AS2{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}AS10c.  Dans quelle tranche se situe votre revenu (milliers de FCFA)? AS2{p_end}
+{p 0 48}{bind:AS11_AS2       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AS11_AS2 }{bind:  }{res}{res}AS11b. Avez-vous un bulletin de paie ? AS2{p_end}
+{p 0 48}{bind:AS2_NOM_B      }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS2_NOM_B{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}AS2. Grands groupe des métiers et professions ?{p_end}
+{p 0 48}{bind:AS3_BRA2_BRAO  }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS3_BRA2_BRAO{p_end}
+{p 0 48}{space 44}{stata "notes list AS3_BRA2_BRAO":*} {res}AS3. Activité de l'entreprise dans l'emploi principal, ou type de produit fabriq{p_end}
+{p 0 48}{bind:AS3_BRA2       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:AS3_BRA2 }{stata "notes list AS3_BRA2":*} {res}AS3. Quelle est l?activité de l'entreprise dans laquelle vous exercez votre empl{p_end}
+{p 0 48}{bind:AS12_AS2_M1    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS2_M1{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS2_M1":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 12eme dernier mois dan{p_end}
+{p 0 48}{bind:AS12_AS2_M2    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS2_M2{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS2_M2":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 11eme dernier mois dan{p_end}
+{p 0 48}{bind:AS12_AS2_M3    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS2_M3{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS2_M3":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 10eme derniers mois da{p_end}
+{p 0 48}{bind:AS12_AS2_M4    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS2_M4{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS2_M4":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 9eme dernier mois dans{p_end}
+{p 0 48}{bind:AS12_AS2_M5    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS2_M5{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS2_M5":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 8eme dernier mois dans{p_end}
+{p 0 48}{bind:AS12_AS2_M6    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS2_M6{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS2_M6":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 7eme dernier mois dans{p_end}
+{p 0 48}{bind:AS12_AS2_M7    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS2_M7{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS2_M7":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 6eme dernier mois dans{p_end}
+{p 0 48}{bind:AS12_AS2_M8    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS2_M8{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS2_M8":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 5eme dernier mois dans{p_end}
+{p 0 48}{bind:AS12_AS2_M9    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS2_M9{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS2_M9":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 4eme dernier mois dans{p_end}
+{p 0 48}{bind:AS12_AS2_M10   }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS2_M10{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS2_M10":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 3eme dernier mois dans{p_end}
+{p 0 48}{bind:AS12_AS2_M11   }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS2_M11{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS2_M11":*} {res}AS12 Comment a varié votre situation d?emploi au cours du 2eme dernier mois dans{p_end}
+{p 0 48}{bind:AS12_AS2_M12   }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}AS12_AS2_M12{p_end}
+{p 0 48}{space 44}{stata "notes list AS12_AS2_M12":*} {res}AS12 Comment a varié votre situation d?emploi au cours du dernier mois dans votr{p_end}
+{p 0 48}{bind:SGES1_AS2_A    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES1_AS2_A{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES1_a2. Perspective de promotion{p_end}
+{p 0 48}{bind:SGES1_AS2_B    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES1_AS2_B{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES1_b2 Revenu perçu/obtenu{p_end}
+{p 0 48}{bind:SGES1_AS2_C    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES1_AS2_C{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES1_c2. Sécurité de l?emploi{p_end}
+{p 0 48}{bind:SGES1_AS2_D    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES1_AS2_D{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES1_d2. Bonnes relations avec les collègues{p_end}
+{p 0 48}{bind:SGES1_AS2_E    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES1_AS2_E{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES1_e2. Bonnes relations avec les supérieurs{p_end}
+{p 0 48}{bind:SGES1_AS2_F    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES1_AS2_F{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES1_f2. Liberté d?initiative{p_end}
+{p 0 48}{bind:SGES1_AS2_G    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES1_AS2_G{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES1_g2. Avantages sociaux{p_end}
+{p 0 48}{bind:SGES1_AS2_H    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES1_AS2_H{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES1_h2. Le travail en lui-même{p_end}
+{p 0 48}{bind:SGES2A_AS2     }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES2A_AS2{p_end}
+{p 0 48}{space 44}{stata "notes list SGES2A_AS2":*} {res}SGES2a_2 Pensez-vous que dans les prochaines années il y a un risque que vous so{p_end}
+{p 0 48}{bind:SGES3_AS2      }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES3_AS2{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES3_2. Quelle est l?expression qui illustre le mieux votre parcours profession{p_end}
+{p 0 48}{bind:SGES4_AS2      }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES4_AS2{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES4_2. Pensez-vous gravir les échelons dans votre entreprise ?{p_end}
+{p 0 48}{bind:SGES5_AS2      }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES5_AS2{p_end}
+{p 0 48}{space 44}{stata "notes list SGES5_AS2":*} {res}SGES5_2. Comment pensez-vous que les activités évoluent dans votre entreprise ?{p_end}
+{p 0 48}{bind:SGES6_AS2_A    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES6_AS2_A{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES6_a2. L?organisation est bonne{p_end}
+{p 0 48}{bind:SGES6_AS2_B    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES6_AS2_B{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES6_b2. L?ambiance de travail est agréable{p_end}
+{p 0 48}{bind:SGES6_AS2_C    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES6_AS2_C{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES6_c2. Les perspectives de promotion sont nombreuses{p_end}
+{p 0 48}{bind:SGES6_AS2_D    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES6_AS2_D{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES6_d2. Les conditions de travail sont bonnes{p_end}
+{p 0 48}{bind:SGES6_AS2_E    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES6_AS2_E{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES6_e2. Il n?y a pas de risque de licenciement{p_end}
+{p 0 48}{bind:SGES7_AS2_A    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES7_AS2_A{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES7_a2. Une équipe{p_end}
+{p 0 48}{bind:SGES7_AS2_B    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES7_AS2_B{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES7_b2. Une passion{p_end}
+{p 0 48}{bind:SGES7_AS2_C    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES7_AS2_C{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES7_c2. Une aventure{p_end}
+{p 0 48}{bind:SGES7_AS2_D    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES7_AS2_D{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES7_d2. Une routine{p_end}
+{p 0 48}{bind:SGES7_AS2_E    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES7_AS2_E{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES7_e2. Une impasse{p_end}
+{p 0 48}{bind:SGES7_AS2_F    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES7_AS2_F{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES7_f2. Une course d?obstacle{p_end}
+{p 0 48}{bind:SGES7_AS2_G    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES7_AS2_G{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES7_g2. Une jungle{p_end}
+{p 0 48}{bind:SGES7_AS2_H    }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}SGES7_AS2_H{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}SGES7_h2. Une galère{p_end}
+{p 0 48}{bind:PS1A           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PS1A     }{bind:  }{res}{res}PS1a. Etes-vous affilié à une organisation d?assurance maladie ?{p_end}
+{p 0 48}{bind:PS1B           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PS1B     }{bind:  }{res}{res}PS1b. Si oui laquelle principalement ?{p_end}
+{p 0 48}{bind:PS1BA          }{txt}{bind: str244  }{bind:{txt}%244s     }{space 1}{bind:         }{bind:  }{res}{res}PS1b. Préciser autre organisation d'assurance maladie ?{p_end}
+{p 0 48}{bind:PS1C           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PS1C     }{bind:  }{res}{res}PS1c. Si non pourquoi ?{p_end}
+{p 0 48}{bind:PS2            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PS2      }{bind:  }{res}{res}PS2.  Avez-vous entendu parler de l?assurance maladie universelle (AMU)?{p_end}
+{p 0 48}{bind:PS3            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PS3      }{stata "notes list PS3":*} {res}PS3. Seriez-vous prêt à payer pour bénéficier des prestations offertes par l?AMU{p_end}
+{p 0 48}{bind:PS4            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list PS4":*} {res}PS4. Quel pourcentage de dépense sera remboursé par l?assurance et/ou l?employeu{p_end}
+{p 0 48}{bind:PS5A           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PS5A     }{stata "notes list PS5A":*} {res}PS5a. Depuis les deux dernières années, auriez-vous changé d?affiliation à une m{p_end}
+{p 0 48}{bind:PS5B           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}PS5b. Si oui, Depuis combien de temps ?  (en nombre de mois){p_end}
+{p 0 48}{bind:PS6A           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PS6A     }{stata "notes list PS6A":*} {res}PS6a. Êtes-vous membre d?une association, d?une coopérative ou d?un autre groupe{p_end}
+{p 0 48}{bind:PS6B           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PS6B     }{stata "notes list PS6B":*} {res}PS6b. Tous les membres de cette association sont-ils affiliés à une mutuelle ou{p_end}
+{p 0 48}{bind:PS6C           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PS6C     }{bind:  }{res}{res}PS6c. Si oui, laquelle principalement ?{p_end}
+{p 0 48}{bind:PS6CA          }{txt}{bind: str244  }{bind:{txt}%244s     }{space 1}{bind:         }{bind:  }{res}{res}PS6c. Préciser autre mutuelle ou organisme de santé{p_end}
+{p 0 48}{bind:FPS1           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:FPS1     }{stata "notes list FPS1":*} {res}FPS1. Auriez-vous bénéficié d?un stage de perfectionnement depuis que vous êtes{p_end}
+{p 0 48}{bind:FPS2           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:FPS2     }{bind:  }{res}{res}FPS2. Comment cette formation a-t-elle été dispensée?{p_end}
+{p 0 48}{bind:FPS3           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}FPS3. Quelle a été la durée de cette formation (en mois) ?{p_end}
+{p 0 48}{bind:FPS4           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:FPS4     }{stata "notes list FPS4":*} {res}FPS4. Quelle qualification avez-vous obtenue à l?issue de cette formation additi{p_end}
+{p 0 48}{bind:FPS5           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:FPS5     }{bind:  }{res}{res}FPS5. Où aviez-vous effectué votre stage de formation ou de perfectionnement ?{p_end}
+{p 0 48}{bind:FPS6           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:FPS6     }{stata "notes list FPS6":*} {res}FPS6. Auriez-vous besoin d?une formation spécifique  afin d?améliorer vos presta{p_end}
+{p 0 48}{bind:FPS7           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:FPS7     }{bind:  }{res}{res}FPS7. Dans quel domaine spécifique ?{p_end}
+{p 0 48}{bind:PRT1A          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1A    }{stata "notes list PRT1A":*} {res}PRT1. Avez-vous fait face à un ou plusieurs problèmes sur votre lieu de travail?{p_end}
+{p 0 48}{bind:PRT1A1         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1A1   }{bind:  }{res}{res}Problème Abus physique{p_end}
+{p 0 48}{bind:PRT1A2         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1A2   }{bind:  }{res}{res}Problème Harcèlement sexuel{p_end}
+{p 0 48}{bind:PRT1A3         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1A3   }{bind:  }{res}{res}ProblèmeAccident de travail{p_end}
+{p 0 48}{bind:PRT1A4         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1A4   }{bind:  }{res}{res}Problème Manque d?égards{p_end}
+{p 0 48}{bind:PRT1A5         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1A5   }{bind:  }{res}{res}Problème Non-paiement de sal{p_end}
+{p 0 48}{bind:PRT1A6         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1A6   }{bind:  }{res}{res}Problème Non-paiement d?inde{p_end}
+{p 0 48}{bind:PRT1A7         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1A7   }{bind:  }{res}{res}Problème Retard de paiement{p_end}
+{p 0 48}{bind:PRT1A8         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1A8   }{bind:  }{res}{res}Problème Retard de paiement{p_end}
+{p 0 48}{bind:PRT1A9         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1A9   }{bind:  }{res}{res}Problème Sous-paiement de salaire{p_end}
+{p 0 48}{bind:PRT1A10        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1A10  }{bind:  }{res}{res}Problème Fatigue{p_end}
+{p 0 48}{bind:PRT1A11        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1A11  }{bind:  }{res}{res}Problème Surcharge de travail{p_end}
+{p 0 48}{bind:PRT1A12        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1A12  }{bind:  }{res}{res}Problème Trop de subordonnée{p_end}
+{p 0 48}{bind:PRT1A13        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1A13  }{bind:  }{res}{res}Problème Discrimination{p_end}
+{p 0 48}{bind:PRT1A14        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1A14  }{bind:  }{res}{res}Problème Abus verbal{p_end}
+{p 0 48}{bind:PRT1A15        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1A15  }{bind:  }{res}{res}Problème Autre (spécifier){p_end}
+{p 0 48}{bind:PRT1B1         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1B1   }{bind:  }{res}{res}Solution Problème Abus physique{p_end}
+{p 0 48}{bind:PRT1B2         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1B2   }{bind:  }{res}{res}Solution Problème Harcèlement sexuel{p_end}
+{p 0 48}{bind:PRT1B3         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1B3   }{bind:  }{res}{res}Solution ProblèmeAccident de travail{p_end}
+{p 0 48}{bind:PRT1B4         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1B4   }{bind:  }{res}{res}Solution Problème Manque d?égards{p_end}
+{p 0 48}{bind:PRT1B5         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1B5   }{bind:  }{res}{res}Solution Problème Non-paiement de sal{p_end}
+{p 0 48}{bind:PRT1B6         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1B6   }{bind:  }{res}{res}Solution Problème Non-paiement d?inde{p_end}
+{p 0 48}{bind:PRT1B7         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1B7   }{bind:  }{res}{res}Solution Problème Retard de paiement{p_end}
+{p 0 48}{bind:PRT1B8         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1B8   }{bind:  }{res}{res}Solution Problème Retard de paiement{p_end}
+{p 0 48}{bind:PRT1B9         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1B9   }{bind:  }{res}{res}Solution Problème Sous-paiement de salaire{p_end}
+{p 0 48}{bind:PRT1B10        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1B10  }{bind:  }{res}{res}Solution Problème Fatigue{p_end}
+{p 0 48}{bind:PRT1B11        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1B11  }{bind:  }{res}{res}Solution Problème Surcharge de travail{p_end}
+{p 0 48}{bind:PRT1B12        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1B12  }{bind:  }{res}{res}Solution Problème Trop de subordonnée{p_end}
+{p 0 48}{bind:PRT1B13        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1B13  }{bind:  }{res}{res}Solution Problème Discrimination{p_end}
+{p 0 48}{bind:PRT1B14        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1B14  }{bind:  }{res}{res}Solution Problème Abus verbal{p_end}
+{p 0 48}{bind:PRT1B15        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT1B15  }{bind:  }{res}{res}Solution Problème Autre (spécifier){p_end}
+{p 0 48}{bind:PRT2           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:PRT2     }{stata "notes list PRT2":*} {res}PRT2. Ces problèmes  ont-ils entraîné des dommages physiques ou psychologiques ?{p_end}
+{p 0 48}{bind:PRT3           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{stata "notes list PRT3":*} {res}PRT3. Si oui, combien de semaines étiez-vous resté sans travailler à cause de ce{p_end}
+{p 0 48}{bind:R1             }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:R1       }{stata "notes list R1":*} {res}R1.  Durant les 30 derniers jours, avez-vous cherché à obtenir un autre emploi ({p_end}
+{p 0 48}{bind:R2             }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:R2       }{bind:  }{res}{res}R2.  Pour quelle raison cherchez-vous un nouvel emploi ?{p_end}
+{p 0 48}{bind:R3             }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:R3       }{stata "notes list R3":*} {res}R3.  Vous avez consacré ce nombre d'heures pour votre emploi principal (voir AP1{p_end}
+{p 0 48}{bind:R3A            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}R3. Si oui Combien d'heures en plus par semaine{p_end}
+{p 0 48}{bind:C1_M           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C1_M     }{bind:  }{res}{res}C1. Depuis quel mois êtes-vous sans emploi et à la recherche d'un emploi ?{p_end}
+{p 0 48}{bind:C1_A           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C1_A     }{bind:  }{res}{res}C1. Depuis quelle année êtes-vous sans emploi et à la recherche d'un emploi ?{p_end}
+{p 0 48}{bind:C2             }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C2       }{stata "notes list C2":*} {res}C2.  Vous recherchez un emploi pour la première fois ou vous avez perdu un emplo{p_end}
+{p 0 48}{bind:C3             }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C3       }{bind:  }{res}{res}C3.  Quelle est  la raison  principale  de la perte de votre emploi antérieur ?{p_end}
+{p 0 48}{bind:C3A            }{txt}{bind: str244  }{bind:{txt}%244s     }{space 1}{bind:         }{bind:  }{res}{res}C3.Bis. Autre raison de perte de l'emploi{p_end}
+{p 0 48}{bind:C4             }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C4       }{stata "notes list C4":*} {res}C4  Comment faites-vous pour subvenir à vos besoins pendant la période de chômag{p_end}
+{p 0 48}{bind:C4A            }{txt}{bind: str244  }{bind:{txt}%244s     }{space 1}{bind:         }{bind:  }{res}{res}C4.Bis. Subvenir aux besoins autre ?{p_end}
+{p 0 48}{bind:C5             }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C5       }{bind:  }{res}{res}C5.   Quel est le principal moyen que vous utilisez pour la recherche active d?u{p_end}
+{p 0 48}{bind:C5A            }{txt}{bind: str244  }{bind:{txt}%244s     }{space 1}{bind:         }{bind:  }{res}{res}C5.Bis. Autre moyen utilisé pour la recherche active d'un emploi ?{p_end}
+{p 0 48}{bind:C6A            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C6A      }{stata "notes list C6A":*} {res}C6a.  Pourquoi navez-vous pas créé ou travaillé dans une micro-entreprise  (peti{p_end}
+{p 0 48}{bind:C6AA           }{txt}{bind: str244  }{bind:{txt}%244s     }{space 1}{bind:         }{bind:  }{res}{res}C6a.Bis. Pourquoi n'avez-vous pas créé....?{p_end}
+{p 0 48}{bind:C6B1           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C6B1     }{stata "notes list C6B1":*} {res}C6b.  Si la durée de chômage se prolonge, seriez-vous prêt à exercer ce genre d'{p_end}
+{p 0 48}{bind:C6B2           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}C6b. Si oui dans combien de mois ?{p_end}
+{p 0 48}{bind:C6C            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C6C      }{bind:  }{res}{res}C6c. Avez-vous connaissance de l?existence des institutions de micro-finances da{p_end}
+{p 0 48}{bind:C6D1           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C6D1     }{bind:  }{res}{res}C6d.  Si oui citer les 3 principales ? Première{p_end}
+{p 0 48}{bind:C6D2           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C6D2     }{bind:  }{res}{res}C6d.  Si oui citer les 3 principales ? Deuxième{p_end}
+{p 0 48}{bind:C6D3           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C6D3     }{bind:  }{res}{res}C6d.  Si oui citer les 3 principales ? Troisième{p_end}
+{p 0 48}{bind:C6E1           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C6E1     }{stata "notes list C6E1":*} {res}C6e. Avez-vous eu à effectuer une démarche auprès de l?une de ces structures de{p_end}
+{p 0 48}{bind:C6E2           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C6E2     }{bind:  }{res}{res}C6e. Si oui laquelle?{p_end}
+{p 0 48}{bind:C6F            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C6F      }{bind:  }{res}{res}C6f. Avez-vous obtenu le crédit demandé ?{p_end}
+{p 0 48}{bind:C7A            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C7A      }{stata "notes list C7A":*} {res}C7a. Etes-vous à la recherche d'un emploi salarié, indépendant ou indifférent ?{p_end}
+{p 0 48}{bind:C7B            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C7B      }{stata "notes list C7B":*} {res}C7b. Etes-vous à la recherche d'un emploi permanent, plein temps, temps partiel,{p_end}
+{p 0 48}{bind:C7C1           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C7C1     }{stata "notes list C7C1":*} {res}C7c1. Etes-vous à la recherche d'un emploi correspondant à votre métier, dans un{p_end}
+{p 0 48}{bind:C7C2           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C7C2     }{bind:  }{res}{res}C7c2. Quel type de métier ?{p_end}
+{p 0 48}{bind:C7D            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C7D      }{bind:  }{res}{res}C7d. Dans quel type d?entreprise ?{p_end}
+{p 0 48}{bind:C8A            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C8A      }{bind:  }{res}{res}C8a. Si l'emploi recherché est salarié, pourquoi ?{p_end}
+{p 0 48}{bind:C8B            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C8B      }{bind:  }{res}{res}C8b. Si l'emploi recherché est indépendant, pourquoi ?{p_end}
+{p 0 48}{bind:C8BA           }{txt}{bind: str244  }{bind:{txt}%244s     }{space 1}{bind:         }{bind:  }{res}{res}C8b. Préciser pourquoi l'emploi recherché est indépendant ?{p_end}
+{p 0 48}{bind:C9             }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}C9.  Combien d'heures par semaine désirez-vous travailler ?{p_end}
+{p 0 48}{bind:C10A           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}C10a.  Pour ce nombre d'heures, combien voulez-vous gagner ? (Convertissez et co{p_end}
+{p 0 48}{bind:C10B           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C10B     }{stata "notes list C10B":*} {res}C10b.  Etes-vous disposé à réviser vos prétentions salariales si la période de c{p_end}
+{p 0 48}{bind:C10C           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}C10c.   Salaire  ou revenu mensuel minimum acceptable ? (Convertissez et codez d{p_end}
+{p 0 48}{bind:C11            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C11      }{bind:  }{res}{res}C11. Etes-vous déjà expérimenté sur cet emploi ?{p_end}
+{p 0 48}{bind:C12A           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C12A     }{stata "notes list C12A":*} {res}C12a.  Avez-vous déposé un dossier à la Fonction publique ou auprès d?une entrep{p_end}
+{p 0 48}{bind:C12B           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:C12B     }{bind:  }{res}{res}C12b. Pourquoi n?avez-vous pas déposé un dossier ?{p_end}
+{p 0 48}{bind:TP1            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP1      }{bind:  }{res}{res}TP1.   Lorsque vous aviez 15 ans, votre père ou tuteur travaillait-il ?{p_end}
+{p 0 48}{bind:TP2            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP2      }{bind:  }{res}{res}TP2.  Quelle était sa catégorie  socio- professionnelle ?{p_end}
+{p 0 48}{bind:TP3            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP3      }{bind:  }{res}{res}TP3.  Dans quel type d'entreprise travaillait-il ?{p_end}
+{p 0 48}{bind:TP4            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP4      }{bind:  }{res}{res}TP4.  Dans quel secteur d?activité travaillait-il ?{p_end}
+{p 0 48}{bind:TP5A           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP5A     }{bind:  }{res}{res}TP5a. Connaissez-vous son niveau d?instruction ?{p_end}
+{p 0 48}{bind:TP5B           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}TP5b. Si oui, quelle est la dernière classe qu'il a suivie avec succès ?{p_end}
+{p 0 48}{bind:TB6            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TB6      }{bind:  }{res}{res}TP6.   Lorsque vous aviez 15 ans, votre mère ou tutrice travaillait-elle ?{p_end}
+{p 0 48}{bind:TP7            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP7      }{bind:  }{res}{res}TP7.  Quelle était sa catégorie socio- professionnelle ?{p_end}
+{p 0 48}{bind:TP8            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP8      }{bind:  }{res}{res}TP8.  Dans quel type d'entreprise travaillait-elle ?{p_end}
+{p 0 48}{bind:TP9            }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP9      }{bind:  }{res}{res}TP9.  Dans quel secteur d?activité travaillait-elle ?{p_end}
+{p 0 48}{bind:TP10A          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP10A    }{bind:  }{res}{res}TP10a. Connaissez-vous son niveau d?instruction ?{p_end}
+{p 0 48}{bind:TP10B          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}TP10b. Si oui, quelle est la dernière classe qu'elle a suivie avec succès ?{p_end}
+{p 0 48}{bind:TP11           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP11     }{stata "notes list TP11":*} {res}TP11.  Vous êtes aujourd'hui (actif occupé, chômeur ou inactif). Exerciez-vous u{p_end}
+{p 0 48}{bind:TP12           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP12     }{stata "notes list TP12":*} {res}TP12.  Quel était le nom du métier, de la profession, du poste, de la tâche, de{p_end}
+{p 0 48}{bind:TP13           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP13     }{stata "notes list TP13":*} {res}TP13.  Quelle  était l?activité de l'entreprise dans laquelle vous avez exercé v{p_end}
+{p 0 48}{bind:TP14_M         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP14_M   }{bind:  }{res}{res}TP14.   Quand avez-vous pris votre emploi antérieur ? Mois{p_end}
+{p 0 48}{bind:TP14_A         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}TP14.   Quand avez-vous pris votre emploi antérieur ? Année{p_end}
+{p 0 48}{bind:TP15           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP15     }{stata "notes list TP15":*} {res}TP15.  L'entreprise dans laquelle vous avez exercé votre emploi antérieur (ou qu{p_end}
+{p 0 48}{bind:TP16           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP16     }{stata "notes list TP16":*} {res}TP16. Combien de personnes au total travaillaient dans cet  établissement (y com{p_end}
+{p 0 48}{bind:TP17           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP17     }{bind:  }{res}{res}TP17. Quelle  était votre catégorie socioprofessionnelle ?{p_end}
+{p 0 48}{bind:TP18           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}TP18.  Pendant combien d'années avez-vous exercé votre emploi antérieur ?{p_end}
+{p 0 48}{bind:TP19           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP19     }{bind:  }{res}{res}TP19. Pourquoi avez-vous quitté votre emploi antérieur ?{p_end}
+{p 0 48}{bind:TP20A_A        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP20A_A  }{stata "notes list TP20A_A":*} {res}TP20a. L'entreprise dans laquelle  vous exerciez ou que vous dirigiez était-elle{p_end}
+{p 0 48}{bind:TP20A_B        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP20A_B  }{stata "notes list TP20A_B":*} {res}TP20a. L'entreprise dans laquelle  vous exerciez ou que vous dirigiez était-elle{p_end}
+{p 0 48}{bind:TP20A_C        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP20A_C  }{stata "notes list TP20A_C":*} {res}TP20a. L'entreprise dans laquelle  vous exerciez ou que vous dirigiez était-elle{p_end}
+{p 0 48}{bind:TP20B          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP20B    }{bind:  }{res}{res}TP20b. Teniez-vous une comptabilité ?{p_end}
+{p 0 48}{bind:TP20BA         }{txt}{bind: str244  }{bind:{txt}%244s     }{space 1}{bind:         }{bind:  }{res}{res}TP20b.bis Tenu d'une comptabilité{p_end}
+{p 0 48}{bind:TP20C          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP20C    }{stata "notes list TP20C":*} {res}TP20c. L?unité dans laquelle vous travailliez réalise-t-elle une activité de pro{p_end}
+{p 0 48}{bind:TP20D          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP20D    }{stata "notes list TP20D":*} {res}TP20d. Si vous avez changé de localité, quelle était votre situation d?emploi da{p_end}
+{p 0 48}{bind:TP20E          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP20E    }{bind:  }{res}{res}TP20e. Quel était votre statut dans cet emploi que vous aviez exercé ?{p_end}
+{p 0 48}{bind:TP21           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP21     }{bind:  }{res}{res}TP21.  Quels sont vos projets d?emploi pour l?avenir ?{p_end}
+{p 0 48}{bind:TP22A          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP22A    }{bind:  }{res}{res}TP22a.  Quel métier ou profession désirez-vous exercer ?{p_end}
+{p 0 48}{bind:TP22B          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP22B    }{bind:  }{res}{res}TP22b  ? dans quelle branche d?activité ?{p_end}
+{p 0 48}{bind:TP22C          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP22C    }{bind:  }{res}{res}TP22c.  ? dans quel type d'entreprise ?{p_end}
+{p 0 48}{bind:TP22D          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP22D    }{bind:  }{res}{res}TP22d.  ? dans quelle catégorie socioprofessionnelle ?{p_end}
+{p 0 48}{bind:TP23A          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP23A    }{bind:  }{res}{res}TP23a. Si l'emploi désiré est salarié, pourquoi ?{p_end}
+{p 0 48}{bind:TP23AA         }{txt}{bind: str244  }{bind:{txt}%244s     }{space 1}{bind:         }{bind:  }{res}{res}TP23aBis. Autre raison{p_end}
+{p 0 48}{bind:TP23B          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP23B    }{bind:  }{res}{res}TP23b.  Si l'emploi désiré est non salarié, pourquoi?{p_end}
+{p 0 48}{bind:TP23BA         }{txt}{bind: str244  }{bind:{txt}%244s     }{space 1}{bind:         }{bind:  }{res}{res}TP23bBis. Autre raison{p_end}
+{p 0 48}{bind:TP24           }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:TP24     }{bind:  }{res}{res}TP24.  Dans combien de temps estimez-vous obtenir cet emploi ?{p_end}
+{p 0 48}{bind:RHEA1          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHEA1    }{bind:  }{res}{res}Pensions du travail{p_end}
+{p 0 48}{bind:RHEA2          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHEA2    }{bind:  }{res}{res}Autres pensions{p_end}
+{p 0 48}{bind:RHEA3          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHEA3    }{bind:  }{res}{res}Revenus de la propriété{p_end}
+{p 0 48}{bind:RHEA4          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHEA4    }{bind:  }{res}{res}Revenus financiers{p_end}
+{p 0 48}{bind:RHEA5          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHEA5    }{bind:  }{res}{res}Transfert reçu d?autres ménages résidants dans le pays{p_end}
+{p 0 48}{bind:RHEA6          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHEA6    }{bind:  }{res}{res}Transfert reçu d?autres ménages à l?étranger{p_end}
+{p 0 48}{bind:RHEA7          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHEA7    }{bind:  }{res}{res}Bourses d?études{p_end}
+{p 0 48}{bind:RHEA8          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHEA8    }{bind:  }{res}{res}Autres revenus{p_end}
+{p 0 48}{bind:RHEB1          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHEB1    }{bind:  }{res}{res}PERIODICITE Pensions du travail{p_end}
+{p 0 48}{bind:RHEB2          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHEB2    }{bind:  }{res}{res}PERIODICITE Autres pensions{p_end}
+{p 0 48}{bind:RHEB3          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHEB3    }{bind:  }{res}{res}PERIODICITE Revenus de la propriété{p_end}
+{p 0 48}{bind:RHEB4          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHEB4    }{bind:  }{res}{res}PERIODICITE Revenus financiers{p_end}
+{p 0 48}{bind:RHEB5          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHEB5    }{bind:  }{res}{res}PERIODICITE Transfert reçu d?autres ménages résidants dans le pays{p_end}
+{p 0 48}{bind:RHEB6          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHEB6    }{bind:  }{res}{res}PERIODICITE Transfert reçu d?autres ménages à l?étranger{p_end}
+{p 0 48}{bind:RHEB7          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHEB7    }{bind:  }{res}{res}PERIODICITE Bourses d?études{p_end}
+{p 0 48}{bind:RHEB8          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHEB8    }{bind:  }{res}{res}PERIODICITE Autres revenus{p_end}
+{p 0 48}{bind:RHEC1          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}MONTANT Pensions du travail{p_end}
+{p 0 48}{bind:RHEC2          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}MONTANT Autres pensions{p_end}
+{p 0 48}{bind:RHEC3          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}MONTANT Revenus de la propriété{p_end}
+{p 0 48}{bind:RHEC4          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}MONTANT Revenus financiers{p_end}
+{p 0 48}{bind:RHEC5          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}MONTANT Transfert reçu d?autres ménages résidants dans le pays{p_end}
+{p 0 48}{bind:RHEC6          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}MONTANT Transfert reçu d?autres ménages à l?étranger{p_end}
+{p 0 48}{bind:RHEC7          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}MONTANT Bourses d?études{p_end}
+{p 0 48}{bind:RHEC8          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}MONTANT Autres revenus{p_end}
+{p 0 48}{bind:RHE6A1         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6A1   }{bind:  }{res}{res}Compte bancaire{p_end}
+{p 0 48}{bind:RHE6A2         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6A2   }{bind:  }{res}{res}Western Union{p_end}
+{p 0 48}{bind:RHE6A3         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6A3   }{bind:  }{res}{res}Money Gram{p_end}
+{p 0 48}{bind:RHE6A4         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6A4   }{bind:  }{res}{res}Wari{p_end}
+{p 0 48}{bind:RHE6A5         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6A5   }{bind:  }{res}{res}Rapid Transfert (Ecobank){p_end}
+{p 0 48}{bind:RHE6A6         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6A6   }{bind:  }{res}{res}Ria{p_end}
+{p 0 48}{bind:RHE6A7         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6A7   }{bind:  }{res}{res}Tigo cash{p_end}
+{p 0 48}{bind:RHE6A8         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6A8   }{bind:  }{res}{res}Orange Money{p_end}
+{p 0 48}{bind:RHE6A9         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6A9   }{bind:  }{res}{res}Bureau Postal/Poste One{p_end}
+{p 0 48}{bind:RHE6A15        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6A15  }{bind:  }{res}{res}JONI JONI{p_end}
+{p 0 48}{bind:RHE6A11        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6A11  }{bind:  }{res}{res}VITFE{p_end}
+{p 0 48}{bind:RHE6A12        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6A12  }{bind:  }{res}{res}Wizall{p_end}
+{p 0 48}{bind:RHE6A13        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6A13  }{bind:  }{res}{res}ToubaPay{p_end}
+{p 0 48}{bind:RHE6A14        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6A14  }{bind:  }{res}{res}Money express{p_end}
+{p 0 48}{bind:RHE6A10        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6A10  }{bind:  }{res}{res}Voyageur / Coli{p_end}
+{p 0 48}{bind:RHE6A19        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6A19  }{bind:  }{res}{res}Autre{p_end}
+{p 0 48}{bind:RHE6B1         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6B1   }{bind:  }{res}{res}Pays de provenance du transfert par Compte bancaire{p_end}
+{p 0 48}{bind:RHE6B2         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6B2   }{bind:  }{res}{res}Pays de provenance du transfert par Western Union{p_end}
+{p 0 48}{bind:RHE6B3         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6B3   }{bind:  }{res}{res}Pays de provenance du transfert par Money Gram{p_end}
+{p 0 48}{bind:RHE6B4         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6B4   }{bind:  }{res}{res}Pays de provenance du transfert par Wari{p_end}
+{p 0 48}{bind:RHE6B5         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6B5   }{bind:  }{res}{res}Pays de provenance du transfert par Rapid Transfert (Ecobank){p_end}
+{p 0 48}{bind:RHE6B6         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6B6   }{bind:  }{res}{res}Pays de provenance du transfert par Ria{p_end}
+{p 0 48}{bind:RHE6B7         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6B7   }{bind:  }{res}{res}Pays de provenance du transfert par Tigo cash{p_end}
+{p 0 48}{bind:RHE6B8         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6B8   }{bind:  }{res}{res}Pays de provenance du transfert par Orange Money{p_end}
+{p 0 48}{bind:RHE6B9         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6B9   }{bind:  }{res}{res}Pays de provenance du transfert par Bureau Postal/Poste One{p_end}
+{p 0 48}{bind:RHE6B15        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6B15  }{bind:  }{res}{res}Pays de provenance du transfert par JONI JONI{p_end}
+{p 0 48}{bind:RHE6B11        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6B11  }{bind:  }{res}{res}Pays de provenance du transfert par VITFE{p_end}
+{p 0 48}{bind:RHE6B12        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6B12  }{bind:  }{res}{res}Pays de provenance du transfert par Wizall{p_end}
+{p 0 48}{bind:RHE6B13        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6B13  }{bind:  }{res}{res}Pays de provenance du transfert par ToubaPay{p_end}
+{p 0 48}{bind:RHE6B14        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6B14  }{bind:  }{res}{res}Pays de provenance du transfert par Money express{p_end}
+{p 0 48}{bind:RHE6B10        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6B10  }{bind:  }{res}{res}Pays de provenance du transfert par Voyageur / Coli{p_end}
+{p 0 48}{bind:RHE6B19        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6B19  }{bind:  }{res}{res}Pays de provenance du transfert par Autre{p_end}
+{p 0 48}{bind:RHE6C1         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant du transfert par Compte bancaire{p_end}
+{p 0 48}{bind:RHE6C2         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant du transfert par Western Union{p_end}
+{p 0 48}{bind:RHE6C3         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant du transfert par Money Gram{p_end}
+{p 0 48}{bind:RHE6C4         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant du transfert par Wari{p_end}
+{p 0 48}{bind:RHE6C5         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant du transfert par Rapid Transfert (Ecobank){p_end}
+{p 0 48}{bind:RHE6C6         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant du transfert par Ria{p_end}
+{p 0 48}{bind:RHE6C7         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant du transfert par Tigo cash{p_end}
+{p 0 48}{bind:RHE6C8         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant du transfert par Orange Money{p_end}
+{p 0 48}{bind:RHE6C9         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant du transfert par Bureau Postal/Poste One{p_end}
+{p 0 48}{bind:RHE6C15        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant du transfert par JONI JONI{p_end}
+{p 0 48}{bind:RHE6C11        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant du transfert par VITFE{p_end}
+{p 0 48}{bind:RHE6C12        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant du transfert par Wizall{p_end}
+{p 0 48}{bind:RHE6C13        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant du transfert par ToubaPay{p_end}
+{p 0 48}{bind:RHE6C14        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant du transfert par Money express{p_end}
+{p 0 48}{bind:RHE6C10        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant du transfert par Voyageur / Coli{p_end}
+{p 0 48}{bind:RHE6C19        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Montant du transfert par Autre{p_end}
+{p 0 48}{bind:RHE6D1         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6D1   }{bind:  }{res}{res}Utilisation princip du Montant du transfert par Compte bancaire{p_end}
+{p 0 48}{bind:RHE6D2         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6D2   }{bind:  }{res}{res}Utilisation princip du Montant du transfert par Western Union{p_end}
+{p 0 48}{bind:RHE6D3         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6D3   }{bind:  }{res}{res}Utilisation princip du Montant du transfert par Money Gram{p_end}
+{p 0 48}{bind:RHE6D4         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6D4   }{bind:  }{res}{res}Utilisation princip du Montant du transfert par Wari{p_end}
+{p 0 48}{bind:RHE6D5         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6D5   }{bind:  }{res}{res}Utilisation princip du Montant du transfert par Rapid Transfert (Ecobank){p_end}
+{p 0 48}{bind:RHE6D6         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6D6   }{bind:  }{res}{res}Utilisation princip du Montant du transfert par Ria{p_end}
+{p 0 48}{bind:RHE6D7         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6D7   }{bind:  }{res}{res}Utilisation princip du Montant du transfert par Tigo cash{p_end}
+{p 0 48}{bind:RHE6D8         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6D8   }{bind:  }{res}{res}Utilisation princip du Montant du transfert par Orange Money{p_end}
+{p 0 48}{bind:RHE6D9         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6D9   }{bind:  }{res}{res}Utilisation princip du Montant du transfert par Bureau Postal/Poste One{p_end}
+{p 0 48}{bind:RHE6D15        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6D15  }{bind:  }{res}{res}Utilisation princip du Montant du transfert par JONI JONI{p_end}
+{p 0 48}{bind:RHE6D11        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6D11  }{bind:  }{res}{res}Utilisation princip du Montant du transfert par VITFE{p_end}
+{p 0 48}{bind:RHE6D12        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6D12  }{bind:  }{res}{res}Utilisation princip du Montant du transfert par Wizall{p_end}
+{p 0 48}{bind:RHE6D13        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6D13  }{bind:  }{res}{res}Utilisation princip du Montant du transfert par ToubaPay{p_end}
+{p 0 48}{bind:RHE6D14        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6D14  }{bind:  }{res}{res}Utilisation princip du Montant du transfert par Money express{p_end}
+{p 0 48}{bind:RHE6D10        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6D10  }{bind:  }{res}{res}Utilisation princip du Montant du transfert par Voyageur / Coli{p_end}
+{p 0 48}{bind:RHE6D19        }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:RHE6D19  }{bind:  }{res}{res}Utilisation princip du Montant du transfert par Autre{p_end}
+{p 0 48}{bind:weightemploy   }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Poids emploi{p_end}
+{p 0 48}{bind:milieu_etendu  }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{txt}milieu_etendu{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}Strates de résidence{p_end}
+{p 0 48}{bind:Region         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:hhsize         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Taille du ménage{p_end}
+{p 0 48}{bind:hhweight       }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}poids ménage{p_end}
+{p 0 48}{bind:sitac          }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:sitac    }{bind:  }{res}{res}Situation d'activité des personnes de 15 ans ou plus{p_end}
+                                            {txt}* indicated variables have notes
+{hline}
+Sorted by: 
+
+{com}. 
+{txt}end of do-file
+
+{com}. exit, clear
