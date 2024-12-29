@@ -306,13 +306,4 @@ graph hbar (count), over(non_adeq_qual, label(angle(0))) by(m3E Region,col(1)) y
 //Inadequation spatiale
 
 
-label define Zone_industriel_label 1 "Dakar" 13 "Thiès" 5 "Kaolack"///
-10 "Saint-Louis" 14 "Zinguinchor" 12 "Tambacounda" 2 "Diourbel"///
-,replace
-label values Zone_industriel Zone_industriel_label
-
-
-
-
-
 log close
